@@ -17,6 +17,11 @@ API is a way to interact with a computer or system to retrieve information or pe
 
 ```npm install typescript --save-dev```
 
+### 2.1
+
+```npm install typescript ts-node @types/node --save-dev```
+
+
 ## 3. Initialize and properly configure TypeScript
 
 ```npx tsc --init```
