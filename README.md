@@ -21,6 +21,10 @@ API is a way to interact with a computer or system to retrieve information or pe
 
 ```npm install typescript ts-node @types/node --save-dev```
 
+&&
+
+```npm install @types/node --save-dev```
+
 
 ## 3. Initialize and properly configure TypeScript
 
@@ -38,7 +42,8 @@ I am actually using these configurations:
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"]
   }
 }
 ```
