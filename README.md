@@ -37,3 +37,15 @@ I am actually using these configurations:
   }
 }
 ```
+
+## 4. Installing Prisma (ORM)
+### Installing prisma
+npm install prisma --save-dev
+
+## 5. Setting up Prisma with the init command of the Prisma CLI
+### OBS.: I'm using SQLite as DBMS
+npx prisma init --datasource-provider sqlite
+
+## 6. Installing Express
+### Installing express
+npm install express --save
