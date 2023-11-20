@@ -48,4 +48,7 @@ npx prisma init --datasource-provider sqlite
 
 ## 6. Installing Express
 ### Installing express
-npm install express --save
+```npm install express --save```
+
+### 6.1 Also, you need to install express types
+```npm i --save-dev @types/express```
