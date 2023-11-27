@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client'
+import UserServices from './services/UserServices'
+import LanceServices from './services/LanceServices'
 
 const prisma = new PrismaClient()
 

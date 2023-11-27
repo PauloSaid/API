@@ -1,39 +1,57 @@
-import { Request, Response } from "express"
-import UserServices from "../services/UserServices"
-import {Prisma} from "@prisma/client"
+import { Request, Response } from 'express';
+import UserServices from '../services/UserServices';
+import { Prisma } from '@prisma/client';
 
-class UserController{
-    constructor(){}
+class UserController {
+    public async list(req: Request, res: Response){
+        try{
+            const userId: string | undefined = req.params.id
+            const users = await UserServices.findUsers(userId);
 
-    async listUsers(req: Request, res: Response){
-        const users = await UserServices.findUsers() as Prisma.UsuarioCreateInput[];
-
-        const filteredUsers = users.filter((user: Prisma.UsuarioCreateInput) => user.email != null)
-
-        return res.status(200).json({
-            status: "OK",
-            users: filteredUsers,
-        })
-    }
-
-    async createUser(req: Request, res: Response){
-        const data: Prisma.UsuarioCreateInput = req.body;
-        if(data){
-            const newuser = UserServices.createUser(data);
-            res.status(200).json({
-                status: '20',
-                newuser: newuser
-            });
-        }else {
-            res.status(400).json({
-                status: "ERROR",
-                mensage: "Missing data"
-            });
+            return res.json(users);
+        }   catch(error){
+            console.log(error);
+            return res.json()
         }
-        res.end('User created')
     }
 
-    
+    public async insert(req: Request, res: Response){
+        try{
+            const userData: Prisma.UsuarioCreateInput = req.body;
+
+            const user = await UserServices.createUser(userData);
+
+            return res.json(user)
+        } catch(error){
+            console.log(error);
+            return res.json(400);
+        }
+    }
+
+    public async update(req: Request, res: Response){
+        try {
+            const usuarioId = req.params.usuarioId;
+            const newData: Prisma.UsuarioCreateInput = req.body;
+
+            const user = await UserServices.updateUser(usuarioId, newData);
+
+            return res.json(user);
+        }   catch(error){
+            console.log(error);
+            return res.json(400);
+        }
+    }
+
+    public async delete(req: Request, res: Response){
+        try {
+            const usuarioId = req.params.usuarioId;
+            const deletedUser = await UserServices.deleteUser(usuarioId);
+            return res.json(deletedUser);
+        }   catch(error){
+            console.log(error);
+            return res.json(400);
+        }
+    }
 }
 
 export default new UserController();
